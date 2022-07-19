@@ -1,14 +1,22 @@
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import Home from "./components/Home";
+
+import Home,{Layout,SignIn,About,Career,Contact,Product} from './components';
+
+import { BrowserRouter, Routes, Route } from "react-router-dom"; 
 function App() {
   return (
   <div>
-    <Header/>
-    <div>
-      <Home/>
-    </div>
-    <Footer/>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout/>}>
+          <Route index element={<Home/>}/>
+          <Route path="product" element={<Product/>}/>
+          <Route path="about" element={<About/>}/>
+          <Route path="contact" element={<Contact/>}/>
+          <Route path="career" element={<Career/>}/>
+        </Route>
+        <Route path="/signin" element={<SignIn/>}/>
+      </Routes>
+    </BrowserRouter>
   </div>
   );
 }

@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import AuthContext from './AuthContext'
-export default function AuthProvider({children}) {
+function AuthProvider(props) {
     const [auth,setAuth]=useState({});
   return (
     <AuthContext.Provider value={{auth,setAuth}}>
-        {children}
+        {props.children}
     </AuthContext.Provider>
   )
 }
+export default AuthProvider;

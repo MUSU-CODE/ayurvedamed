@@ -1,13 +1,14 @@
 import React from 'react'
 import Carousel from 'react-bootstrap/Carousel';
 import a,{b,c,d} from '../assets/images';
+import './home.css';
 export default function Home() {
     return (
         <div>
             <Carousel>
                 <Carousel.Item>
                     <img
-                        className="d-block w-100"
+                        className="d-block w-100 wall"
                         src={b}
                         width={'800'}
                         height={'400'}
@@ -20,7 +21,7 @@ export default function Home() {
                 </Carousel.Item>
                 <Carousel.Item>
                     <img
-                        className="d-block w-100"
+                        className="d-block w-100 wall"
                         src={c}
                         width={'800'}
                         height={'400'}
@@ -34,7 +35,7 @@ export default function Home() {
                 </Carousel.Item>
                 <Carousel.Item>
                     <img
-                        className="d-block w-100"
+                        className="d-block w-100 wall"
                         src={d}
                         width={'800'}
                         height={'400'}
