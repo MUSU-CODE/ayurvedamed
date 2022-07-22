@@ -1,11 +1,14 @@
 import Home from "./Home"
 import Layout from "./Layout";
 import SignIn from "./SignIn";
+import SignUp from "./SignUp";
+import MyOrder from "./MyOrder";
 import About from "./About";
 import Career from "./Career";
 import Contact from "./Contact";
 import Footer from "./Footer";
 import Header from "./Header";
 import Product from "./Product";
-export {Layout,SignIn,About,Career,Contact,Footer,Header,Product};
+import ProductCard from "./ProductCard";
+export {Layout,SignIn,SignUp,MyOrder,About,Career,Contact,Footer,Header,Product,ProductCard};
 export default Home;
