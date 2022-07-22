@@ -1,8 +1,24 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Carousel from 'react-bootstrap/Carousel';
-import a,{b,c,d} from '../assets/images';
+import a, { b, c, d } from '../assets/images';
 import './home.css';
+import axios from 'axios';
+import { Row, Col } from 'react-bootstrap'
+import ProductCard from './ProductCard';
 export default function Home() {
+    const [products, setProducts] = useState([]);
+    useEffect(() => {
+        axios.get('http://localhost:8081/medicine').then(res => res.data).then(data => setProducts(data)).catch(e => alert(e));
+    }, [products]);
+    const musu = (
+        <Row>
+            {products.map((product) => (
+                <Col key={product.medicineId} sm={12} md={6} lg={4} xl={3}>
+                    <ProductCard product={product} />
+                </Col>
+            ))}
+        </Row>
+    );
     return (
         <div>
             <Carousel>
@@ -45,11 +61,12 @@ export default function Home() {
                     <Carousel.Caption>
                         <h3>Ayur</h3>
                         <p>
-                        Life (ayu) is the combination (samyoga) of body, senses, mind, and reincarnating soul.
+                            Life (ayu) is the combination (samyoga) of body, senses, mind, and reincarnating soul.
                         </p>
                     </Carousel.Caption>
                 </Carousel.Item>
             </Carousel>
+            {products.length == 0 ? <div>No medicine found</div> : musu }
         </div>
     )
 }
