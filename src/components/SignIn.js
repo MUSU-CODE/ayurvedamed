@@ -18,10 +18,10 @@ export default function SignIn() {
             }
         };
         let data = {
-            'email':email.value,
-            'password':password.value
+            'userEmail':email.value,
+            'userPassword':password.value,
         };
-        axios.post('/login',data)
+        axios.post('http://localhost:8081/user/signIn',data)
         .then((res)=>res.data)
         .then((data)=>data&&(localStorage.setItem('userInfo',JSON.stringify(data))||setAuth(data)||navigate(location.state?.from?.pathname || "/",{replace:true})))
         .catch((err)=>alert(err));

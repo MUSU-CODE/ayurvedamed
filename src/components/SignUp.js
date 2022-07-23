@@ -13,12 +13,12 @@ export default function SignUp() {
         e.preventDefault();
         const {name,email,password,type}=document.forms[0];
         let data = {
-            'name':name.value,
-            'email':email.value,
-            'password':password.value,
-            'type':type.value
+            'userName':name.value,
+            'userEmail':email.value,
+            'userPassword':password.value,
+            'role':type.value
         };
-        axios.post('/register',data)
+        axios.post('http://localhost:8081/user/signUp',data)
         .then((res)=>res.data)
         .then((data)=>data&&(localStorage.setItem('userInfo',JSON.stringify(data))||setAuth(data)||navigate(location.state?.from?.pathname || "/",{replace:true})))
         .catch((err)=>alert(err));

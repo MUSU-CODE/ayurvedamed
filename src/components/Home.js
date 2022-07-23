@@ -8,7 +8,7 @@ import ProductCard from './ProductCard';
 export default function Home() {
     const [products, setProducts] = useState([]);
     useEffect(() => {
-        axios.get('http://localhost:8081/medicine').then(res => res.data).then(data => setProducts(data)).catch(e => alert(e));
+        axios.get('http://localhost:8081/medi/readAll').then(res => res.data).then(data => setProducts(data)).catch(e => alert(e));
     }, [products]);
     const musu = (
         <Row>

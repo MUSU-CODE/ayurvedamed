@@ -12,5 +12,6 @@ import Footer from "./Footer";
 import Header from "./Header";
 import Product from "./Product";
 import ProductCard from "./ProductCard";
-export {Layout,SignIn,SignUp,MyOrder,About,Career,Contact,Footer,Header,Product,ProductCard,AddMedicine,ListMedicine};
+import SignOut from "./SignOut";
+export {Layout,SignIn,SignUp,MyOrder,About,Career,Contact,Footer,Header,Product,ProductCard,AddMedicine,ListMedicine,SignOut};
 export default Home;

@@ -23,7 +23,7 @@ function Header() {
           >
             <Nav.Link as={Link} to={'/'}>Home</Nav.Link>
             <Nav.Link as={Link} to={'myorder'}>My Order</Nav.Link>
-            {auth?<Nav.Link as={Link} to={'medicines'}>Medicines</Nav.Link>:""}
+            {(auth?.role==="admin")?<Nav.Link as={Link} to={'medicines'}>Medicines</Nav.Link>:""}
             <NavDropdown title="Link" id="navbarScrollingDropdown">
               <NavDropdown.Item as={Link} to={'about'}>About Us</NavDropdown.Item>
               <NavDropdown.Item as={Link} to={'contact'}>Contact Us</NavDropdown.Item>
@@ -40,7 +40,7 @@ function Header() {
               <Button variant="outline-primary">Search</Button>
             </Form>
           </Nav>
-          <Button variant="outline-success" as={Link} to={'signin'}>Sign In</Button>
+          {!auth?<Button variant="outline-success" as={Link} to={'signin'}>Sign In</Button>:<Button variant="outline-success" as={Link} to={'signout'}>Sign Out</Button>}
         </Navbar.Collapse>
       </Container>
     </Navbar>

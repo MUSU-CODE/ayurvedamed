@@ -1,5 +1,5 @@
 
-import Home,{Layout,SignIn,SignUp,Product,About,Career,Contact,MyOrder,AddMedicine,ListMedicine} from './components';
+import Home,{Layout,SignIn,SignUp,Product,About,Career,Contact,MyOrder,AddMedicine,ListMedicine,SignOut} from './components';
 
 import { BrowserRouter, Routes, Route } from "react-router-dom"; 
 function App() {
@@ -19,6 +19,7 @@ function App() {
         </Route>
         <Route path="/signin" element={<SignIn/>}/>
         <Route path="/signup" element={<SignUp/>}/>
+        <Route path="/signout" element={<SignOut/>}/>
       </Routes>
     </BrowserRouter>
   </div>
