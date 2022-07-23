@@ -5,8 +5,10 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import {Link} from 'react-router-dom';
+import useAuth from '../context/useAuth';
 
 function Header() {
+  const {auth}=useAuth();
   return (
     <Navbar bg="light" expand="lg">
       <Container fluid>
@@ -21,6 +23,7 @@ function Header() {
           >
             <Nav.Link as={Link} to={'/'}>Home</Nav.Link>
             <Nav.Link as={Link} to={'myorder'}>My Order</Nav.Link>
+            {auth?<Nav.Link as={Link} to={'medicines'}>Medicines</Nav.Link>:""}
             <NavDropdown title="Link" id="navbarScrollingDropdown">
               <NavDropdown.Item as={Link} to={'about'}>About Us</NavDropdown.Item>
               <NavDropdown.Item as={Link} to={'contact'}>Contact Us</NavDropdown.Item>
