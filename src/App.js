@@ -1,5 +1,5 @@
 
-import Home,{Layout,SignIn,SignUp,Product,About,Career,Contact,MyOrder} from './components';
+import Home,{Layout,SignIn,SignUp,Product,About,Career,Contact,MyOrder,AddMedicine,ListMedicine} from './components';
 
 import { BrowserRouter, Routes, Route } from "react-router-dom"; 
 function App() {
@@ -10,6 +10,8 @@ function App() {
         <Route path="/" element={<Layout/>}>
           <Route index element={<Home/>}/>
           <Route path="myorder" element={<MyOrder/>}/>
+          <Route path="medicines" element={<ListMedicine/>}/>
+          <Route path="addmedicine" element={<AddMedicine/>}/>
           <Route path="about" element={<About/>}/>
           <Route path="contact" element={<Contact/>}/>
           <Route path="career" element={<Career/>}/>
