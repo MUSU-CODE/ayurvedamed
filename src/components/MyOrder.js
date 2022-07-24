@@ -2,8 +2,11 @@ import React, { useEffect, useState } from 'react'
 import OrderService from '../services/OrderService';
 export default function MyOrder() {
   const [orders,setOrders]=useState([]);
+  const navigate=useNavigate();
   useEffect(()=>{
-    OrderService.getAllOrder().then(res=>setOrders(res.data)).catch(e=>alert(e));
+    if(!auth) 
+      return navigate("/signin",{replace:true});
+    OrderService.getAllOrder(auth.userId).then(res=>setOrders(res.data)).catch(e=>alert(e));
   },[orders])
   return (
     <div className="container">
