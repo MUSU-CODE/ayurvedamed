@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import OrderService from '../services/OrderService';
+import useAuth from '../context/useAuth';
 export default function MyOrder() {
   const [orders,setOrders]=useState([]);
   const navigate=useNavigate();
+  const {auth}=useAuth();
   useEffect(()=>{
     if(!auth) 
       return navigate("/signin",{replace:true});
