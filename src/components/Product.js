@@ -1,20 +1,61 @@
-import { Row, Col, Image, ListGroup, Card, Button, Form } from 'react-bootstrap'
-import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-export default function Product({ medId }) {
-  const [medicine,setMedicine]=useState();
+import { Row, Col, Image, ListGroup, Card, Button, Form } from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
+import MedicineService from '../services/MedicineService';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import OrderService from '../services/OrderService';
+import useAuth from '../context/useAuth';
+export default function Product() {
+  const { id } = useParams();
+  const {auth}= useAuth();
+  const [img,setImg]=useState("holder.js/100px180");
+  const navigate=useNavigate();
+  const location=useLocation();
+  const [medicine, setMedicine] = useState({
+    medicineName: "",
+    medicineCost: 60.00,
+    mfd: "",
+    expiryDate: "",
+    companyName: "",
+    category: ""
+  });
+  useEffect(()=>{
+    MedicineService.getMedicineById(id).then((response)=>setMedicine(response.data)).catch(e=>alert(e));
+  },[medicine])
+  const handleCart=(e)=> {
+    e.preventDefault();
+    if(!auth) 
+      return navigate("/signin",{replace:true});
+    OrderService.createOrder(medicine,auth);
+    navigate("/myorder",{replace:true});
+  }
   return (
     <>
-      <Card className="text-center">
-        <Card.Header>Featured</Card.Header>
+      <Card style={{ width: '28rem' }}>
+        <Card.Img variant="top" src={img}/>
         <Card.Body>
-          <Card.Title>Special title treatment</Card.Title>
+          <Card.Title>{medicine.medicineName}</Card.Title>
           <Card.Text>
-            With supporting text below as a natural lead-in to additional content.
+            Company : {medicine.companyName}
           </Card.Text>
-          <Button variant="primary">Go somewhere</Button>
+          <ListGroup.Item>
+            Category : {medicine.category}
+          </ListGroup.Item>
+          <ListGroup.Item>
+            Manufacturing date : {medicine.mfd}
+          </ListGroup.Item>
+          <ListGroup.Item>
+            Expiry date : {medicine.expiryDate}
+          </ListGroup.Item>
+          <ListGroup.Item>
+            <Row>
+              <Col>Price:</Col>
+              <Col>
+                <strong>Rs.{medicine.medicineCost}</strong>{"  "}<del>Rs.{(medicine.medicineCost+medicine.medicineCost*0.1)}</del>
+              </Col>
+            </Row>
+          </ListGroup.Item>
+          <Button variant="primary" onClick={handleCart}>Add to Cart</Button>
         </Card.Body>
-        <Card.Footer className="text-muted">2 days ago</Card.Footer>
       </Card>
     </>
   )

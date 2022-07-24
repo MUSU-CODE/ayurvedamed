@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import {Link, useNavigate, useParams } from 'react-router-dom';
+import {Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 import MedicineService from '../services/MedicineService'
 
 const AddMedicine = () => {
@@ -12,6 +12,7 @@ const AddMedicine = () => {
     const [category, setCategory]=useState('')
 
     const history = useNavigate();
+    const location = useLocation();
     const {id} = useParams();
 
     const saveOrUpdateMedicine = (e) => {
@@ -21,7 +22,7 @@ const AddMedicine = () => {
 
         if(id){
             MedicineService.updateMedicine(id, medicine).then((response) => {
-                history.push('/medicines')
+                history(location.state?.from?.pathname || "/",{replace:true})
             }).catch(error => {
                 console.log(error)
             })
@@ -31,7 +32,7 @@ const AddMedicine = () => {
 
                 console.log(response.data)
     
-                history.push('/medicines');
+                history(location.state?.from?.pathname || "/",{replace:true})
     
             }).catch(error => {
                 console.log(error)
