@@ -19,8 +19,11 @@ class OrderService {
         }
         return axios.post(link + "/ordercreate",data);
     }
-    getAllOrder(userId){
+    getOrder(userId){
         return axios.get(link+"/getUserOrders/"+userId);
+    }
+    getAllOrder() {
+        return axios.get(link+"/readOrderAll");
     }
 }
 export default new OrderService();

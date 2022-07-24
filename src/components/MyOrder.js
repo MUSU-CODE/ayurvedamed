@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import OrderService from '../services/OrderService';
 import useAuth from '../context/useAuth';
 export default function MyOrder() {
+  const {userId} = useParams();
   const [orders,setOrders]=useState([]);
   const navigate=useNavigate();
   const {auth}=useAuth();
   useEffect(()=>{
     if(!auth) 
       return navigate("/signin",{replace:true});
-    OrderService.getAllOrder(auth.userId).then(res=>setOrders(res.data)).catch(e=>alert(e));
+    if(!userId)
+      OrderService.getAllOrder().then(res=>setOrders(res.data)).catch(e=>alert(e));
+    else
+      OrderService.getOrder(userId).then(res=>setOrders(res.data)).catch(e=>alert(e));
   },[orders])
   return (
     <div className="container">
