@@ -26,7 +26,7 @@ export default function Product() {
     if(!auth) 
       return navigate("/signin",{replace:true});
     OrderService.createOrder(medicine,auth);
-    navigate("/myorder",{replace:true});
+    navigate("/myorder/"+auth.userId,{replace:true});
   }
   return (
     <>
@@ -54,7 +54,7 @@ export default function Product() {
               </Col>
             </Row>
           </ListGroup.Item>
-          <Button variant="primary" onClick={handleCart}>Add to Cart</Button>
+          <Button variant="primary" onClick={handleCart}>Buy Now</Button>
         </Card.Body>
       </Card>
     </>
